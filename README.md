@@ -7,7 +7,7 @@ React.JS
 * 컴포넌트 기반의 라이브러리 (component : 데이터를 넣으면 우리가 지정한 user interface를 조립해서 보여줌. 코드의 재사용성과 유지보수성을 증가 시켜줌)
 * 라우터, 상태관리 같은 기능들이 자체에 내장 되어있지 않고 공식적인 라이브러리도 없음. 원하는 스택을 골라서 사용 (라이브러리를 만들어서 쓸 수 있음)
 * 자유도가 높아 선택장애가 일어날 수 있음
-* 2018.12.26 기준으로 사랑받는 프레임워크 2위 (2017년에는 1위라고 했는데 ㅠㅠㅠㅠㅠㅠ)
+* [2018.12.26 기준으로 사랑받는 프레임워크 2위](https://insights.stackoverflow.com/survey/2018/#technology-most-loved-dreaded-and-wanted-frameworks-libraries-and-tools) (2017년에는 1위라고 했는데 ㅠㅠㅠㅠㅠㅠ)
 * 통계적으로 재사용 의향이 높음
 ![react 재사용률](https://i.imgur.com/z1GYYpi.png "프레임워크별 재사용률 조사")
 
