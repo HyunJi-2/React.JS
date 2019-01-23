@@ -1,6 +1,19 @@
 React.JS
 =============
 
+팀 내에서 React 단어가 나오기 시작하면서 React를 배워야겠다고 결심
+
+나의 첫 사수분에게 추천 받은 [누구든지 하는 리액트](https://velopert.com/3613)
+
+초반에 따라하면서 신기 & 뿌듯
+
+사이트 강좌의 끝이 보이기 시작하면서 어려움 & 막막 (갈길이 멀음)
+
+하면서 큰 어려움 없이 할수있음
+
+
+
+
 # react 특징
 * JSX 문법 사용 (JSX : JavaScript의 구문 확장 React.createElement)
 * Virtual DOM (변화를 가상 DOM에서 미리 인지하여 변화함. 가상DOM 변화를 마지막에 실제 DOM에게 던져 줌)
@@ -43,13 +56,19 @@ React.JS
 
 # react 프로젝트 작업
 ## 작업 전 설치해야 하는 항목
-* node.js : webpack과 babel을 사용하기 위해 설치
-* yarn : 조금 개선도니 npm이라고 생각하면 된다 함. 프로젝트에서 사용되는 라이브러리를 설치하고 해당 라이브러리들의 버전 관리를 하게 될때 사용
+* 코드에디터 (제가 사용한 에디터는 [webstorm](https://www.jetbrains.com/webstorm/))
+* 윈도우 사용자라면 [Git for Windows](https://gitforwindows.org/) 설치. Git Bash 사용
+* [node.js](https://nodejs.org/ko/download/) : webpack과 babel을 사용하기 위해 설치. macOS, Linux의 경우 [nvm](https://github.com/creationix/nvm)을 통해 설치하는것을 권장 (업데이트 하기도 쉽고, 터미널을 통해 어떤 버전을 사용 할지 설정 할 수도 있어서 편리)
+* [yarn](https://yarnpkg.com/en/docs/install#windows-stable) : 조금 개선도니 npm이라고 생각하면 된다 함. 프로젝트에서 사용되는 라이브러리를 설치하고 해당 라이브러리들의 버전 관리를 하게 될때 사용. [yarn을 사용하는 이유 : 더 나은 속도, 더 나은 캐싱 시스템](https://www.keycdn.com/blog/npm-vs-yarn)
 * webpack : 여러가지 파일을 한개로 결합하기 위해 사용
 * babel : 새로운 자바스크립트 문법들을 위해 사용
 등의 도구를 설치하여 프로젝트를 설정해 주어야 함
 
 페이스북에서 제공해주는 도구 [create-react-app](https://github.com/facebook/create-react-app)을 통해서 간단하게 준비할 수 있음
+
+리액트 프로젝트를 만들게 되면서 JSX 문법으로 작성한 컴포넌트를 여러가지 파일로 분리해서 저장
+여러가지의 파일을 한개로 결합하기 위해서는 Webpack 도구를 사용
+새로운 자바스크립트 문법들을 사용하기 위해서는 Babel 도구를 사용
 
 
 
