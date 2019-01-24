@@ -152,14 +152,14 @@ React.JS
 
               }
     
-    * 컴포넌트 제거
+  * 컴포넌트 제거
       + componentWillUnmount : 주로 등록했었던 이벤트를 제거. 만약에 setTimeout 을 걸은것이 있다면 clearTimeout 을 통하여 제거. 추가적으로 외부 라이브러리를 사용한게 있고 해당 라이브러리에 dispose 기능이 있다면 여기서 호출
       
             componentWillUnmount() {
               // 이벤트, setTimeout, 외부 라이브러리 인스턴스 제거
             }
         
-    * 컴포넌트 에러 발생
+  * 컴포넌트 에러 발생
       + componentDidCatch : state.error 를 true 로 설정. render 함수쪽에서 이에 따라 에러를 띄워주면 됨. 컴포넌트 자신의 render 함수에서 에러가 발생해버리는것은 잡아낼 수는 없음. 하지만 컴포넌트의 자식 컴포넌트 내부에서 발생하는 에러들을 잡아낼 수 있음
       
             componentDidCatch(error, info) {
