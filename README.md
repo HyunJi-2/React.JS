@@ -135,7 +135,7 @@ React.JS
                 };
               }
             }
-        
+
           componentDidUpdate(prevProps, prevState, snapshot) {
             if (snapshot) {
               const { scrollTop } = this.list;
@@ -145,12 +145,12 @@ React.JS
             }
           }
         
-      + componentDidUpdate : 컴포넌트에서 render() 를 호출하고 난 다음에 발생. 이 시점에선 this.props와 this.state 가 바뀌어 있음.
-      파라미터를 통해 이전의 값인 prevProps 와 prevState 를 조회 할 수 있음. getSnapshotBeforeUpdate 에서 반환한 snapshot 값은 세번째 값으로 받아옴.
+    + componentDidUpdate : 컴포넌트에서 render() 를 호출하고 난 다음에 발생. 이 시점에선 this.props와 this.state 가 바뀌어 있음.
+    파라미터를 통해 이전의 값인 prevProps 와 prevState 를 조회 할 수 있음. getSnapshotBeforeUpdate 에서 반환한 snapshot 값은 세번째 값으로 받아옴.
       
-              componentDidUpdate(prevProps, prevState, snapshot) {
+          componentDidUpdate(prevProps, prevState, snapshot) {
 
-              }
+          }
     
   * 컴포넌트 제거
       + componentWillUnmount : 주로 등록했었던 이벤트를 제거. 만약에 setTimeout 을 걸은것이 있다면 clearTimeout 을 통하여 제거. 추가적으로 외부 라이브러리를 사용한게 있고 해당 라이브러리에 dispose 기능이 있다면 여기서 호출
