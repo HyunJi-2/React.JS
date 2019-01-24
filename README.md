@@ -82,87 +82,91 @@ React.JS
   - 컴포넌트 초기 생성
     + constructor : 컴포넌트 생성자 함수. 컴포넌트가 새로 만들어질때마다 함수 호출
       
-        constructor(props) {
-          super(props);
-        }
+          constructor(props) {
+            super(props);
+          }
 
     + componentDidMount : 컴포넌트가 화면에 나타나게 됐을때 호출
     
-        componentDidMount() {
-          // 외부 라이브러리 연동: D3, masonry, etc
-          // 컴포넌트에서 필요한 데이터 요청: Ajax, GraphQL, etc
-          // DOM 에 관련된 작업: 스크롤 설정, 크기 읽어오기 등
-        }
+          componentDidMount() {
+            // 외부 라이브러리 연동: D3, masonry, etc
+            // 컴포넌트에서 필요한 데이터 요청: Ajax, GraphQL, etc
+            // DOM 에 관련된 작업: 스크롤 설정, 크기 읽어오기 등
+          }
     
   - 컴포넌트 업데이트
     + static getDerivedStateFromProps() : props로 받아온 값을 state로 동기화 하는 작업을 해줘야하는 경우에 사용
     
-      static getDerivedStateFromProps(nextProps, prevState) {
-        // 여기서는 setState 를 하는 것이 아니라 특정 props 가 바뀔 때 설정하고 설정하고 싶은 state 값을 리턴하는 형태로 사용
-        /*
-        if (nextProps.value !== prevState.value) {
-          return { value: nextProps.value };
-        }
-        return null; // null 을 리턴하면 따로 업데이트 할 것은 없다라는 의미
-        */
-      }
-      
+          static getDerivedStateFromProps(nextProps, prevState) {
+            // 여기서는 setState 를 하는 것이 아니라 특정 props 가 바뀔 때 설정하고 설정하고 싶은 state 값을 리턴하는 형태로 사용
+            /*
+            if (nextProps.value !== prevState.value) {
+              return { value: nextProps.value };
+            }
+            return null; // null 을 리턴하면 따로 업데이트 할 것은 없다라는 의미
+            */
+          }
+
     + shouldComponentUpdate : 컴포넌트 최적화 하는 작업에서 매우 유용하게 사용
     
-      shouldComponentUpdate(nextProps, nextState) {
-        // return false 하면 업데이트를 안함
-        // return this.props.checked !== nextProps.checked
-        return true;
-      }
+          shouldComponentUpdate(nextProps, nextState) {
+            // return false 하면 업데이트를 안함
+            // return this.props.checked !== nextProps.checked
+            return true;
+          }
       
-    + getSnapshotBeforeUpdate() : 발생하는 시점 → render(), getSnapshotBeforeUpdate(), 실제 DOM에 변화 발생, componentDidUpdate. DOM변화가 일어나기 직전의 DOM 상태를 가져오고 여기서 리턴하는 값은 componentDidUpdate 에서 3번째 파라미터로 받아올수 있음
-      getSnapshotBeforeUpdate(prevProps, prevState) {
-        // DOM 업데이트가 일어나기 직전의 시점입니다.
-        // 새 데이터가 상단에 추가되어도 스크롤바를 유지해보겠습니다.
-        // scrollHeight 는 전 후를 비교해서 스크롤 위치를 설정하기 위함이고,
-        // scrollTop 은, 이 기능이 크롬에 이미 구현이 되어있는데, 
-        // 이미 구현이 되어있다면 처리하지 않도록 하기 위함입니다.
-          if (prevState.array !== this.state.array) {
-            const {
-              scrollTop, scrollHeight
-            } = this.list;
-            
-            // 여기서 반환 하는 값은 componentDidMount 에서 snapshot 값으로 받아올 수 있습니다.
-            return {
-              scrollTop, scrollHeight
-            };
+    + getSnapshotBeforeUpdate() : 발생하는 시점 → render(), getSnapshotBeforeUpdate(), 실제 DOM에 변화 발생,componentDidUpdate.
+    DOM변화가 일어나기 직전의 DOM 상태를 가져오고 여기서 리턴하는 값은 componentDidUpdate 에서 3번째 파라미터로 받아올수 있음
+    
+        getSnapshotBeforeUpdate(prevProps, prevState) {
+          // DOM 업데이트가 일어나기 직전의 시점입니다.
+          // 새 데이터가 상단에 추가되어도 스크롤바를 유지해보겠습니다.
+          // scrollHeight 는 전 후를 비교해서 스크롤 위치를 설정하기 위함이고,
+          // scrollTop 은, 이 기능이 크롬에 이미 구현이 되어있는데, 
+          // 이미 구현이 되어있다면 처리하지 않도록 하기 위함입니다.
+            if (prevState.array !== this.state.array) {
+              const {
+                scrollTop, scrollHeight
+              } = this.list;
+
+              // 여기서 반환 하는 값은 componentDidMount 에서 snapshot 값으로 받아올 수 있습니다.
+              return {
+                scrollTop, scrollHeight
+              };
+            }
           }
-        }
         
-        componentDidUpdate(prevProps, prevState, snapshot) {
-          if (snapshot) {
-            const { scrollTop } = this.list;
-            if (scrollTop !== snapshot.scrollTop) return; // 기능이 이미 구현되어있다면 처리하지 않습니다.
-            const diff = this.list.scrollHeight - snapshot.scrollHeight;
-            this.list.scrollTop += diff;
+          componentDidUpdate(prevProps, prevState, snapshot) {
+            if (snapshot) {
+              const { scrollTop } = this.list;
+              if (scrollTop !== snapshot.scrollTop) return; // 기능이 이미 구현되어있다면 처리하지 않습니다.
+              const diff = this.list.scrollHeight - snapshot.scrollHeight;
+              this.list.scrollTop += diff;
+            }
           }
-        }
         
-      + componentDidUpdate : 컴포넌트에서 render() 를 호출하고 난 다음에 발생. 이 시점에선 this.props와 this.state 가 바뀌어 있음. 파라미터를 통해 이전의 값인 prevProps 와 prevState 를 조회 할 수 있음. getSnapshotBeforeUpdate 에서 반환한 snapshot 값은 세번째 값으로 받아옴.
-        componentDidUpdate(prevProps, prevState, snapshot) {
-        
-        }
+      + componentDidUpdate : 컴포넌트에서 render() 를 호출하고 난 다음에 발생. 이 시점에선 this.props와 this.state 가 바뀌어 있음.
+      파라미터를 통해 이전의 값인 prevProps 와 prevState 를 조회 할 수 있음. getSnapshotBeforeUpdate 에서 반환한 snapshot 값은 세번째 값으로 받아옴.
+      
+              componentDidUpdate(prevProps, prevState, snapshot) {
+
+              }
     
     * 컴포넌트 제거
       + componentWillUnmount : 주로 등록했었던 이벤트를 제거. 만약에 setTimeout 을 걸은것이 있다면 clearTimeout 을 통하여 제거. 추가적으로 외부 라이브러리를 사용한게 있고 해당 라이브러리에 dispose 기능이 있다면 여기서 호출
       
-        componentWillUnmount() {
-          // 이벤트, setTimeout, 외부 라이브러리 인스턴스 제거
-        }
+            componentWillUnmount() {
+              // 이벤트, setTimeout, 외부 라이브러리 인스턴스 제거
+            }
         
     * 컴포넌트 에러 발생
       + componentDidCatch : state.error 를 true 로 설정. render 함수쪽에서 이에 따라 에러를 띄워주면 됨. 컴포넌트 자신의 render 함수에서 에러가 발생해버리는것은 잡아낼 수는 없음. 하지만 컴포넌트의 자식 컴포넌트 내부에서 발생하는 에러들을 잡아낼 수 있음
       
-        componentDidCatch(error, info) {
-          this.setState({
-            error: true
-          });
-        }
+            componentDidCatch(error, info) {
+              this.setState({
+                error: true
+              });
+            }
 
 
 
